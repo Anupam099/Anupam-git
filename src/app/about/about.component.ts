@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class AboutComponent implements OnInit {
 
-  leader: Leader[];
+  leaders: Leader[];
 
   constructor(private leaderservice: LeaderService,
     private route: ActivatedRoute,
@@ -20,7 +20,8 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
-    this.leader = this.leaderservice.getLeaders();
+    this.leaderservice.getLeaders()
+    .subscribe(leaders => this.leaders = leaders);
   }
 
 }
